@@ -14,7 +14,12 @@ const validNewUser = Joi.object({
   image: Joi.string(),
 });
 
+const validNewCategory = Joi.object({
+  name: Joi.string().required(),
+});
+
 module.exports = {
   validLogin,
   validNewUser,
+  validNewCategory,
 };
