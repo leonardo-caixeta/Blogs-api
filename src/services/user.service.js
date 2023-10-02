@@ -45,7 +45,9 @@ const createUser = async (displayName, email, password, image) => {
 };
 
 const getAll = async () => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    attributes: ['displayName', 'email', 'image'],
+  });
 
   return { status: 'SUCCESSFUL', data: users };
 };
