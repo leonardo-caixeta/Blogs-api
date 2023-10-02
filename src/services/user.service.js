@@ -53,7 +53,12 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const user = await User.findByPk(id);
+  const user = await User.findOne({
+    where: {
+      id,
+    },
+    attributes: ['displayName', 'email', 'image', 'id'],
+  });
 
   if (user === null) return { status: 'NOT_FOUND', data: { message: 'User does not exist' } };
 
