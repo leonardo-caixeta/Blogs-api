@@ -37,6 +37,8 @@ const createUser = async (displayName, email, password, image) => {
     return { status: 'CONFLICT', data: { message: 'User already registered' } };
   }
 
+  await User.create({ displayName, email, password, image });
+
   const token = newToken(email);
 
   return { status: 'CREATED', data: { token } };
