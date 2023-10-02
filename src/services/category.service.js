@@ -1,22 +1,23 @@
 const { Category } = require('../models');
 const { validNewCategory } = require('./validations/schemas');
 
-const createUser = async (name) => {
+const createCategory = async (name) => {
   const { error } = validNewCategory.validate({ name });
 
   if (error) return { status: 'INVALID_VALUE', data: { message: error.message } };
 
-  const user = await Category.findOne({
-    where: { name },
-  });
+  const { dataValues, ...rest } = await Category.create({ name });
 
-  if (await user) {
-    return { status: 'CONFLICT', data: { message: 'User already registered' } };
-  }
+  return { status: 'CREATED', data: { name: dataValues.name, id: rest.null } };
+};
 
-  return { status: 'CREATED', data: user };
+const getAll = async () => {
+  const categories = await Category.findAll();
+
+  return { status: 'SUCCESSFUL', data: categories };
 };
 
 module.exports = {
-  createUser,
+  createCategory,
+  getAll,
 };

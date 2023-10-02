@@ -31,8 +31,6 @@ const createUser = async (displayName, email, password, image) => {
     where: { email, password, displayName, image },
   });
 
-  console.log(await user);
-
   if (await user) {
     return { status: 'CONFLICT', data: { message: 'User already registered' } };
   }
