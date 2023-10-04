@@ -22,7 +22,7 @@ const login = async (email, password) => {
   return { status: 'SUCCESSFUL', data: { token } };
 };
 
-const createUser = async (displayName, email, password, image) => {
+const create = async (displayName, email, password, image) => {
   const { error } = validNewUser.validate({ displayName, email, password, image });
 
   if (error) return { status: 'INVALID_VALUE', data: { message: error.message } };
@@ -65,7 +65,7 @@ const getById = async (id) => {
 
 module.exports = {
   login,
-  createUser,
+  create,
   getAll,
   getById,
 };

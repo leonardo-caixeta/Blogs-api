@@ -18,8 +18,17 @@ const validNewCategory = Joi.object({
   name: Joi.string().required(),
 });
 
+const validNewBlogPost = Joi.object({
+  title: Joi.string().required(),
+  content: Joi.string().required(),
+  categoryIds: Joi.array().required(),
+}).messages({
+  'string.required': 'Some required fields are missing',
+});
+
 module.exports = {
   validLogin,
   validNewUser,
   validNewCategory,
+  validNewBlogPost,
 };

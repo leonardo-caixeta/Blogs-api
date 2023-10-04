@@ -1,7 +1,7 @@
 const { Category } = require('../models');
 const { validNewCategory } = require('./validations/schemas');
 
-const createCategory = async (name) => {
+const create = async (name) => {
   const { error } = validNewCategory.validate({ name });
 
   if (error) return { status: 'INVALID_VALUE', data: { message: error.message } };
@@ -18,6 +18,6 @@ const getAll = async () => {
 };
 
 module.exports = {
-  createCategory,
+  create,
   getAll,
 };
